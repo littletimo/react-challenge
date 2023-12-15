@@ -265,8 +265,11 @@ const generateBallotData = () => {
 const ballotData = generateBallotData();
 
 app.get('/api/getBallotData', (req, res) => {
+  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   res.json(ballotData);
   console.log('Sent navigation categories and list of nominees');
 });
 
 console.log('App is listening on port ' + port);
+
+module.exports = app;
